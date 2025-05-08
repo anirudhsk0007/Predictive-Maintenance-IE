@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Industro - Industrial HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    {% include('link.html') %}
+    <style>
+        
+    /* Custom CSS to reduce modal size */
+       .modal-dialog {
+            width: 500px; /* Adjust the width as needed */
+    }
+
+
+        .status-ok { color: green; font-weight: bold; }
+        .status-upcoming { color: orange; font-weight: bold; }
+        .status-due { color: red; font-weight: bold; }
+        .status-overdue { color: darkred; font-weight: bold; }
+   
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+{% include('header.html') %}
+
+<!-- Flash Messages -->
+<div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+</div>
+    <!-- Carousel Start -->
+    <div class="container-fluid px-0 mb-5">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="static/img/carousel-1.jpg" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10 text-start">
+                                    <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">25 Years of Working Experience</p>
+                                    <h1 class="display-1 text-white mb-5 animated slideInRight">Industrial Solution Providing Company</h1>
+                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInRight">Explore More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="static/img/carousel-2.jpg" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10 text-start">
+                                    <p class="fs-5 fw-medium text-primary text-uppercase animated slideInRight">25 Years of Working Experience</p>
+                                    <h1 class="display-1 text-white mb-5 animated slideInRight">The Best Reliable Industry Solution</h1>
+                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInRight">Explore More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Features Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="position-relative me-lg-4">
+                        <img class="img-fluid w-100" src="static/img/feature.jpg" alt="">
+                        <span class="position-absolute top-50 start-100 translate-middle bg-white rounded-circle d-none d-lg-block" style="width: 120px; height: 120px;"></span>
+                        <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="#" data-bs-target="#videoModal">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <p class="fw-medium text-uppercase text-primary mb-2">Why Choosing Us!</p>
+                    <h1 class="display-5 mb-4">Few Reasons Why People Choosing Us!</h1>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <div class="row gy-4">
+                        <div class="col-12">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div class="ms-4">
+                                    <h4>Experienced Workers</h4>
+                                    <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div class="ms-4">
+                                    <h4>Reliable Industrial Services</h4>
+                                    <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div class="ms-4">
+                                    <h4>24/7 Customer Support</h4>
+                                    <span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features End -->
+<!--prediction Model Start-->
+
+<div class="modal modal-video fade" id="prediction" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Make Prediction </h3>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <form action="/predict" method="post" autocomplete="off">
+                        <div class="row g-3">
+                           
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                <input type="text" class="form-control" id="feature_1" value="{%if data and data.feature_1 %}{{data.feature_1}}{%endif%}" name="feature_1" placeholder="Air Temperature [K]:">
+                                <label for="feature_1">Air Temperature [K]: </label>
+                            </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="feature_2" value="{%if data and data.feature_2%}{{data.feature_2}}{%endif%}" name="feature_2" placeholder="Process Temperature [K]:">
+                                    <label for="feature_2">Process Temperature [K]:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="feature_3" value="{%if data and data.feature_3%}{{data.feature_3}}{%endif%}" name="feature_3" placeholder="Rotational Speed [Rpm]:">
+                                    <label for="feature_3">Rotational Speed [Rpm]:</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="feature_4" value="{%if data and data.feature_4%}{{data.feature_4}}{%endif%}" name="feature_4" placeholder="Torque [Nm]:">
+                                    <label for="feature_4">Torque [Nm]:</label>
+                                </div>
+                            </div>
+                            {%if data and data.prediction%}
+                            <div class="col-md-12">
+                              <h1 style="color: yellow;">Prediction Result</h1>
+     <!-- Display the prediction result -->
+     <p style="color: red;">Your maintenance prediction: <strong>{{ data.prediction }}</strong></p>
+                            </div>
+                            {%endif%}
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Predict</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- prediction Modal End -->
+
+<!--profile Model Start-->
+
+<div class="modal modal-video fade" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Profile</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                        <div class="row g-3">
+                            {% if profiles %}
+                                   <div class="col-md-4 ">
+                                      <label for="name">Name:</label>
+                                   </div>
+                                   <div class="col-md-8">
+                                    <label for="name"><b>{{profiles[1]}}</b></label>
+                                 </div>
+
+                                 <div class="col-md-4 ">
+                                    <label for="name">Email:</label>
+                                 </div>
+                                 <div class="col-md-8">
+                                  <label for="name"><b>{{profiles[2]}}</b></label>
+                               </div>
+
+                               <div class="col-md-4 ">
+                                <label for="name">Phone Number:</label>
+                             </div>
+                             <div class="col-md-8">
+                              <label for="name"><b>{{profiles[3]}}</b></label>
+                           </div>
+
+                           <div class="col-md-4 ">
+                            <label for="name">User Type:</label>
+                         </div>
+                         <div class="col-md-8">
+                          <label for="name"><b>{{profiles[5]}}</b></label>
+                       </div>
+                         {%endif%}          
+                                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- profile Modal End -->
+
+<!--about Model Start-->
+
+<div class="modal modal-video fade" id="about" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1500px;">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">About US</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <div class="container-xxl py-5">
+                        <div class="container">
+                            <div class="row g-5">
+                                <div class="col-lg-6">
+                                    <div class="row gx-3 h-100">
+                                        <div class="col-6 wow fadeInUp" data-wow-delay="0.1s">
+                                            <img class="img-fluid" width="200px" src="static/img/about-1.jpg">
+                                        </div>
+                                        <div class="col-6 wow fadeInDown" data-wow-delay="0.1s">
+                                            <img class="img-fluid" width="200px" src="static/img/about-2.jpg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <p class="fw-medium text-uppercase text-primary mb-2">About Us</p>
+                                    <h3 class="display-7 mb-4">Optimized Maintenance Prediction for Machines</h3>
+                                    <p class="mb-4">This project focuses on predictive maintenance for construction and manufacturing equipment using advanced machine learning models and the Crayfish Algorithm for optimization. The goal is to reduce downtime and maintenance costs through data-driven insights and real-time monitoring.</p>
+                                    <h5 class="display-7 mb-4">Key Features</h5>
+                                    <p><b>Data Analysis:</b> Real-time sensor data is analyzed, including temperature, speed and torque</p>
+                                    <p><b>Machine Learning Models:</b>Algorithms like Random Forest, Gradient Boosting, and SVM are compared for accuracy and selected the highest accuracy model.</p>
+                                    <p><b>Crayfish Optimization:</b>A nature-inspired algorithm that enhances model performance and prediction accuracy.</p>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about Modal End -->
+
+<!--contact Model Start-->
+
+<div class="modal modal-video fade" id="contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Contact</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <form action="#" method="post" autocomplete="off">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <label for="subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                    <label for="message">Message</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- contact Modal End -->
+
+<!--register Model Start-->
+
+<div class="modal modal-video fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Register</h3>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <form action="/register_db" method="post" autocomplete="off">
+                        <div class="row g-3">
+                           
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                <input type="text" class="form-control" id="name" name="Name" placeholder="Name">
+                                <label for="name">Name</label>
+                            </div>
+                        </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="PhoneNumber" name="Phone Number" placeholder="Phone Number">
+                                    <label for="PhoneNumber">Phone Number</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="email" name="Email" placeholder="Email">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
+                                    <label for="cpassword">Confirm Password</label>
+                                </div>
+                            </div>
+                           
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- register Modal End -->
+
+<!--mechine monitor Model Start-->
+
+<div class="modal modal-video fade" id="mechine" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px;">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Mechine List</h3>
+                <button data-bs-toggle="modal" data-bs-target="#add_mechine" class="btn btn-primary py-1 px-2" style="margin-left: 400px;">Add Mechine</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <table class="table">
+                        <tr>
+                           <th>#</th>
+                           <th>Mechine</th>
+                           <th>Type</th>
+                           <th>Instaled Date</th>
+                           <th>Last Maintenance</th>
+                           <th>Next Maintenance</th>
+                           <th>Health</th>
+                        </tr>
+                        {% for mechine in mechines %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                              <td>{{mechine[1]}}</td>
+                              <td>{{mechine[2]}}</td>
+                              <td>{{mechine[3]}}</td>
+                              <td>{{mechine[4]}}</td>
+                              <td>{{mechine[5]}}</td>
+                              <td>
+                                {% if mechine[7] == 'OK' %}
+                                    <span class="status-ok">{{ mechine[7] }}</span>
+                                {% elif mechine[7] == 'Upcoming Maintenance' %}
+                                    <span class="status-upcoming">{{ mechine[7] }}</span>
+                                {% elif mechine[7] == 'Due Soon' %}
+                                    <span class="status-due">{{ mechine[7] }}</span>
+                                {% else %}
+                                    <span class="status-overdue">{{ mechine[7] }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>Data is Not Found</tr>
+                        {% endfor %}
+                       </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- mechine monitor Modal End -->
+
+<!--Add Mechine Model Start-->
+
+<div class="modal modal-video fade" id="add_mechine" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Add Mechine</h3>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <form action="/add_mechine" method="post" autocomplete="off">
+                        <div class="row g-3">
+                           
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Mechine Name">
+                                    <label for="name">Mechine Name</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="type" name="type" placeholder="Mechine Type">
+                                    <label for="type">Mechine Type</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="instaled" name="instaled" placeholder="Mechine Type">
+                                    <label for="instaled">Instaled</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="date" class="form-control" id="next" name="next" placeholder="Next Maintanance">
+                                    <label for="instaled">Next Maintanance</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="working" name="working" placeholder="Working Condition">
+                                    <label for="instaled">Working Condition</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Mechine Modal End -->
+
+
+<!--Login Model Start-->
+
+<div class="modal modal-video fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-sm">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Login</h3>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <form action="/authe" method="post" autocomplete="off">
+                        <div class="row g-3">
+                           
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="User Name">
+                                <label for="username">User Name</label>
+                            </div>
+                        </div>
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary py-3 px-5" type="submit">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login Modal End -->
+
+<!--user monitor Model Start-->
+
+<div class="modal modal-video fade" id="usermonitor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 700px;">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">User List</h3>
+                
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12" style="padding: 30px;">
+                    <table class="table">
+                        <tr>
+                           <th>#</th>
+                           <th>Name</th>
+                           <th>Email</th>
+                           <th>Phone Number</th>
+                           <th>Type</th>
+                        </tr>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                              <td>{{user[1]}}</td>
+                              <td>{{user[2]}}</td>
+                              <td>{{user[3]}}</td>
+                              <td>{{user[5]}}</td>
+                        </tr>
+                        {% else %}
+                        <tr>Data is Not Found</tr>
+                        {% endfor %}
+                       </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- user monitor Modal End -->
+
+{% include('footer.html') %}
+{% include('script.html') %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if Flask passed show_modal = 'true' from backend
+    let showModal = "{{ show_modal }}";
+    if (showModal === 'true') {
+        var myModal = new bootstrap.Modal(document.getElementById('prediction'));
+        myModal.show();
+    }
+});
+</script>
+
+
+
+</body>
+
+</html>
